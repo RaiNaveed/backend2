@@ -1,9 +1,16 @@
-const productdata = (req, res)=>{
+const productmodel = require('./models/productmanagementmodel')
+const productdata =async (req, res)=>{
     try {
-        console.log(req.body)
+        const {productname, productprice } = req.Body;
+        const doctocreat =new productmodel({
+            productname,
+            productprice
+
+        })
+         const doctosave=await doctocreat.save();
         res.json({
             Message:'you have reaches API end Point',
-            Body:req.Body
+            Body:doctosave
 
         })
     } catch (error) {
